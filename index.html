@@ -90,10 +90,12 @@
     flex-direction:column;
     isolation:isolate;
   }
+  .hero{overflow:hidden;}
   .hero__photo{
     position:absolute;inset:0;z-index:-2;
     background:url("assets/webp/cand_1.webp") center 62% / cover no-repeat;
     filter:saturate(1.02) contrast(1.02) brightness(1.01);
+    transform:none!important;animation:none!important;transition:none!important;
   }
   .hero__grade{
     position:absolute;inset:0;z-index:-1;pointer-events:none;
@@ -286,8 +288,8 @@
   #services{background:#2f1517;}
   /* фон услуг статичный (без параллакса) и не вылезает за секцию — не наползает на герой */
   #services .scrim{background:linear-gradient(180deg,rgba(47,21,23,.92),rgba(47,21,23,.72) 42%,rgba(47,21,23,.96));}
-  .serv-more{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.55rem;max-width:900px;}
-  .serv-more span{font-size:.82rem;font-weight:300;color:rgba(243,232,224,.82);border:1px solid rgba(232,213,200,.28);border-radius:999px;padding:.34rem .82rem;background:rgba(243,232,224,.04);}
+  .serv-more{margin-top:1.4rem;display:grid;grid-template-columns:1fr 1fr;gap:.55rem;max-width:560px;}
+  .serv-more span{font-size:.82rem;font-weight:300;color:rgba(243,232,224,.82);border:1px solid rgba(232,213,200,.28);border-radius:999px;padding:.42rem .9rem;background:rgba(243,232,224,.04);text-align:center;}
   .serv-more-lead{margin-top:1.9rem;font-size:.92rem;font-weight:300;color:rgba(243,232,224,.62);max-width:52ch;}
   .serv-invite{margin-top:1.8rem;font-size:.92rem;font-weight:300;line-height:1.55;color:rgba(243,232,224,.8);max-width:60ch;
     border-left:2px solid rgba(232,213,200,.4);padding-left:1rem;}

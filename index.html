@@ -240,7 +240,7 @@
      СИСТЕМА САЙТА — тот же дизайн-язык что и hero
      ========================================================= */
   .scene{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;}
-  .layer{position:absolute;inset:0;}
+  .layer{position:absolute;inset:-12% -6%;will-change:transform;}
   .layer img{width:100%;height:100%;object-fit:cover;}
   .scrim{position:absolute;inset:0;z-index:3;}
   .content{position:relative;z-index:4;width:100%;max-width:1180px;margin:0 auto;padding:0 var(--pad);}
@@ -285,7 +285,6 @@
   /* ---- SERVICES ---- */
   #services{background:#2f1517;}
   /* фон услуг статичный (без параллакса) и не вылезает за секцию — не наползает на герой */
-  #services .layer{inset:0;transform:none!important;}
   #services .scrim{background:linear-gradient(180deg,rgba(47,21,23,.92),rgba(47,21,23,.72) 42%,rgba(47,21,23,.96));}
   .serv-more{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.55rem;max-width:900px;}
   .serv-more span{font-size:.82rem;font-weight:300;color:rgba(243,232,224,.82);border:1px solid rgba(232,213,200,.28);border-radius:999px;padding:.34rem .82rem;background:rgba(243,232,224,.04);}
@@ -478,17 +477,6 @@
   </div>
 </section>
 
-<!-- ============ ФИШКА: сухоцветы ============ -->
-<section class="scene" id="feature">
-  <div class="layer" data-depth="0.22"><img loading="lazy" src="assets/webp/cand_1.webp" alt="Маникюр с живыми сухоцветами, запаянными в покрытие"></div>
-  <div class="scrim"></div>
-  <div class="content">
-    <span class="feature__tag rise">Авторская техника</span>
-    <h2 class="rise">Сухоцветы,<br>запаянные <em>в покрытие</em></h2>
-    <p class="lead rise">Настоящие сухоцветы укладываются на ноготь и запаиваются под слой гель-лака — рисунок получается объёмным и живым, а&nbsp;не&nbsp;плоским отпечатком слайдера. Каждый ноготь неповторим, как и сам цветок.</p>
-  </div>
-</section>
-
 <!-- ============ ГАЛЕРЕЯ ============ -->
 <section id="gallery">
   <div class="content">
@@ -530,7 +518,7 @@
       </figure>
     </div>
     <button class="gal-showmore rise" id="galMore" type="button">Показать ещё</button>
-    <p class="gal-note rise">Полная лента работ — в альбоме студии на Яндекс.Картах, ссылка в подвале страницы.</p>
+    <p class="gal-note rise">Полная галерея работ — <a href="https://yandex.ru/maps/?text=Страна%20МАНИКЮРиЯ%20Тамары%20Бескровной%20Раменское%20Высоковольтная%2022" target="_blank" rel="noopener" style="color:var(--nude);border-bottom:1px solid rgba(232,213,200,.4);text-decoration:none;">на Яндекс.Картах</a>.</p>
   </div>
 </section>
 
@@ -644,8 +632,8 @@
 
 <script>
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // параллакс отключён по просьбе — все фоны статичны, движется только появление блоков
-  const layers = [];
+  // параллакс на всех секциях, КРОМЕ первого экрана (герой статичный)
+  const layers = [...document.querySelectorAll('.scene:not(#hero) .layer')].map(el=>({el,d:parseFloat(el.dataset.depth)}));
   let ticking=false;
   function parallax(){
     const vh=innerHeight;

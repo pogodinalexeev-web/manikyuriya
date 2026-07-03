@@ -87,14 +87,16 @@
      ========================================================= */
   .hero{
     position:relative;
-    min-height:100dvh;
+    min-height:100svh;
     display:flex;
     flex-direction:column;
     isolation:isolate;
+    overflow:hidden;
   }
-  .hero{overflow:hidden;}
   .hero__photo{
-    position:absolute;inset:0;z-index:-2;
+    position:absolute;top:0;left:0;right:0;
+    height:100svh;min-height:100%;
+    z-index:-2;
     background:url("assets/webp/cand_1.webp") center 62% / cover no-repeat;
     filter:saturate(1.02) contrast(1.02) brightness(1.01);
     transform:none!important;animation:none!important;transition:none!important;
